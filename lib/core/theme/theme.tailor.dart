@@ -11,18 +11,12 @@ part of 'theme.dart';
 
 mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
   Color get secondary;
-  AppTextTheme get textTheme;
   MissionTheme get missionTheme;
 
   @override
-  AppTheme copyWith({
-    Color? secondary,
-    AppTextTheme? textTheme,
-    MissionTheme? missionTheme,
-  }) {
+  AppTheme copyWith({Color? secondary, MissionTheme? missionTheme}) {
     return AppTheme(
       secondary: secondary ?? this.secondary,
-      textTheme: textTheme ?? this.textTheme,
       missionTheme: missionTheme ?? this.missionTheme,
     );
   }
@@ -32,7 +26,6 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
     if (other is! AppTheme) return this as AppTheme;
     return AppTheme(
       secondary: Color.lerp(secondary, other.secondary, t)!,
-      textTheme: textTheme.lerp(other.textTheme, t) as AppTextTheme,
       missionTheme: missionTheme.lerp(other.missionTheme, t) as MissionTheme,
     );
   }
@@ -43,7 +36,6 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
         (other.runtimeType == runtimeType &&
             other is AppTheme &&
             const DeepCollectionEquality().equals(secondary, other.secondary) &&
-            const DeepCollectionEquality().equals(textTheme, other.textTheme) &&
             const DeepCollectionEquality().equals(
               missionTheme,
               other.missionTheme,
@@ -55,7 +47,6 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
     return Object.hash(
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(secondary),
-      const DeepCollectionEquality().hash(textTheme),
       const DeepCollectionEquality().hash(missionTheme),
     );
   }
@@ -64,44 +55,7 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
 extension AppThemeBuildContextProps on BuildContext {
   AppTheme get appTheme => Theme.of(this).extension<AppTheme>()!;
   Color get secondary => appTheme.secondary;
-  AppTextTheme get textTheme => appTheme.textTheme;
   MissionTheme get missionTheme => appTheme.missionTheme;
-}
-
-mixin _$AppTextThemeTailorMixin on ThemeExtension<AppTextTheme> {
-  Color get background;
-
-  @override
-  AppTextTheme copyWith({Color? background}) {
-    return AppTextTheme(background: background ?? this.background);
-  }
-
-  @override
-  AppTextTheme lerp(covariant ThemeExtension<AppTextTheme>? other, double t) {
-    if (other is! AppTextTheme) return this as AppTextTheme;
-    return AppTextTheme(
-      background: Color.lerp(background, other.background, t)!,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is AppTextTheme &&
-            const DeepCollectionEquality().equals(
-              background,
-              other.background,
-            ));
-  }
-
-  @override
-  int get hashCode {
-    return Object.hash(
-      runtimeType.hashCode,
-      const DeepCollectionEquality().hash(background),
-    );
-  }
 }
 
 mixin _$MissionThemeTailorMixin on ThemeExtension<MissionTheme> {

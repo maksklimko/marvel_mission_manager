@@ -7,8 +7,17 @@ environment:
   sdk: ^3.7.0
 
 dependencies:
+  dartz: ^0.10.1
+  equatable: ^2.0.7
   flutter:
     sdk: flutter
+  flutter_bloc: ^9.1.0
+  flutter_screenutil: ^5.9.3
+  freezed: ^3.0.4
+  freezed_annotation: ^3.0.0
+  go_router: ^14.8.1
+  google_fonts: ^6.2.1
+  json_annotation: ^4.9.0
   theme_tailor_annotation: ^3.0.2
 
 dev_dependencies:
@@ -17,6 +26,10 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   theme_tailor: ^3.0.2
   build_runner: ^2.4.15
+  json_serializable: ^6.9.4
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
