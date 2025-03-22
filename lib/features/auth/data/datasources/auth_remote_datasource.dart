@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:injectable/injectable.dart';
 import 'package:marvel_mission_manager/core/constants/failures.dart';
 
 abstract interface class AuthRemoteDataSource {
@@ -10,6 +11,7 @@ abstract interface class AuthRemoteDataSource {
   });
 }
 
+@Injectable(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final FirebaseAuth firebaseAuth;
   AuthRemoteDataSourceImpl(this.firebaseAuth);
