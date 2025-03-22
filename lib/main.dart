@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:marvel_mission_manager/core/router/router.dart';
 import 'package:marvel_mission_manager/core/theme/theme_manager.dart';
+import 'package:marvel_mission_manager/core/utils/scroll_behaiviour.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
@@ -23,6 +24,7 @@ class App extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           routerConfig: router,
           theme: ThemeManager.dark,
+          scrollBehavior: AppScrollBehavior(),
         );
       },
     );

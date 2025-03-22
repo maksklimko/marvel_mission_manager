@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:marvel_mission_manager/core/constants/colors.dart';
 import 'package:marvel_mission_manager/core/extensions/theme_extension.dart';
 
 class AppButton extends StatelessWidget {
@@ -24,7 +25,7 @@ class AppButton extends StatelessWidget {
         onPressed: onPressed,
         child:
             isLoading
-                ? const CircularProgressIndicator()
+                ? const CircularProgressIndicator(color: AppColors.white)
                 : Text(title, style: context.theme.textTheme.labelMedium),
       ),
     );

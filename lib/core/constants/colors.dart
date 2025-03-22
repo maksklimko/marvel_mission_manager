@@ -9,4 +9,5 @@ abstract class AppColors {
   static const Color thunder = Color(0xFF2D2D2D);
   static const Color rangoonGreen = Color(0xFF1B1B1B);
   static const Color onyx = Color(0xFF111111);
+  static const Color silver = Color(0xFFBCBCBC);
 }

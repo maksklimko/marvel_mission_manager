@@ -11,13 +11,22 @@ part of 'theme.dart';
 
 mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
   Color get secondary;
+  CharacterTheme get characterTheme;
   MissionTheme get missionTheme;
+  SliverAppBarTheme get sliverAppBarTheme;
 
   @override
-  AppTheme copyWith({Color? secondary, MissionTheme? missionTheme}) {
+  AppTheme copyWith({
+    Color? secondary,
+    CharacterTheme? characterTheme,
+    MissionTheme? missionTheme,
+    SliverAppBarTheme? sliverAppBarTheme,
+  }) {
     return AppTheme(
       secondary: secondary ?? this.secondary,
+      characterTheme: characterTheme ?? this.characterTheme,
       missionTheme: missionTheme ?? this.missionTheme,
+      sliverAppBarTheme: sliverAppBarTheme ?? this.sliverAppBarTheme,
     );
   }
 
@@ -26,7 +35,12 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
     if (other is! AppTheme) return this as AppTheme;
     return AppTheme(
       secondary: Color.lerp(secondary, other.secondary, t)!,
+      characterTheme:
+          characterTheme.lerp(other.characterTheme, t) as CharacterTheme,
       missionTheme: missionTheme.lerp(other.missionTheme, t) as MissionTheme,
+      sliverAppBarTheme:
+          sliverAppBarTheme.lerp(other.sliverAppBarTheme, t)
+              as SliverAppBarTheme,
     );
   }
 
@@ -37,8 +51,16 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
             other is AppTheme &&
             const DeepCollectionEquality().equals(secondary, other.secondary) &&
             const DeepCollectionEquality().equals(
+              characterTheme,
+              other.characterTheme,
+            ) &&
+            const DeepCollectionEquality().equals(
               missionTheme,
               other.missionTheme,
+            ) &&
+            const DeepCollectionEquality().equals(
+              sliverAppBarTheme,
+              other.sliverAppBarTheme,
             ));
   }
 
@@ -47,7 +69,9 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
     return Object.hash(
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(secondary),
+      const DeepCollectionEquality().hash(characterTheme),
       const DeepCollectionEquality().hash(missionTheme),
+      const DeepCollectionEquality().hash(sliverAppBarTheme),
     );
   }
 }
@@ -55,7 +79,68 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
 extension AppThemeBuildContextProps on BuildContext {
   AppTheme get appTheme => Theme.of(this).extension<AppTheme>()!;
   Color get secondary => appTheme.secondary;
+  CharacterTheme get characterTheme => appTheme.characterTheme;
   MissionTheme get missionTheme => appTheme.missionTheme;
+  SliverAppBarTheme get sliverAppBarTheme => appTheme.sliverAppBarTheme;
+}
+
+mixin _$CharacterThemeTailorMixin on ThemeExtension<CharacterTheme> {
+  TextStyle get characterNameStyle;
+  TextStyle get completionPercentageStyle;
+
+  @override
+  CharacterTheme copyWith({
+    TextStyle? characterNameStyle,
+    TextStyle? completionPercentageStyle,
+  }) {
+    return CharacterTheme(
+      characterNameStyle: characterNameStyle ?? this.characterNameStyle,
+      completionPercentageStyle:
+          completionPercentageStyle ?? this.completionPercentageStyle,
+    );
+  }
+
+  @override
+  CharacterTheme lerp(
+    covariant ThemeExtension<CharacterTheme>? other,
+    double t,
+  ) {
+    if (other is! CharacterTheme) return this as CharacterTheme;
+    return CharacterTheme(
+      characterNameStyle:
+          TextStyle.lerp(characterNameStyle, other.characterNameStyle, t)!,
+      completionPercentageStyle:
+          TextStyle.lerp(
+            completionPercentageStyle,
+            other.completionPercentageStyle,
+            t,
+          )!,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is CharacterTheme &&
+            const DeepCollectionEquality().equals(
+              characterNameStyle,
+              other.characterNameStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              completionPercentageStyle,
+              other.completionPercentageStyle,
+            ));
+  }
+
+  @override
+  int get hashCode {
+    return Object.hash(
+      runtimeType.hashCode,
+      const DeepCollectionEquality().hash(characterNameStyle),
+      const DeepCollectionEquality().hash(completionPercentageStyle),
+    );
+  }
 }
 
 mixin _$MissionThemeTailorMixin on ThemeExtension<MissionTheme> {
@@ -101,6 +186,55 @@ mixin _$MissionThemeTailorMixin on ThemeExtension<MissionTheme> {
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(cardBottomBarColor),
       const DeepCollectionEquality().hash(energyCardColor),
+    );
+  }
+}
+
+mixin _$SliverAppBarThemeTailorMixin on ThemeExtension<SliverAppBarTheme> {
+  Color get backgroundColor;
+  TextStyle get titleStyle;
+
+  @override
+  SliverAppBarTheme copyWith({Color? backgroundColor, TextStyle? titleStyle}) {
+    return SliverAppBarTheme(
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      titleStyle: titleStyle ?? this.titleStyle,
+    );
+  }
+
+  @override
+  SliverAppBarTheme lerp(
+    covariant ThemeExtension<SliverAppBarTheme>? other,
+    double t,
+  ) {
+    if (other is! SliverAppBarTheme) return this as SliverAppBarTheme;
+    return SliverAppBarTheme(
+      backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
+      titleStyle: TextStyle.lerp(titleStyle, other.titleStyle, t)!,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SliverAppBarTheme &&
+            const DeepCollectionEquality().equals(
+              backgroundColor,
+              other.backgroundColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              titleStyle,
+              other.titleStyle,
+            ));
+  }
+
+  @override
+  int get hashCode {
+    return Object.hash(
+      runtimeType.hashCode,
+      const DeepCollectionEquality().hash(backgroundColor),
+      const DeepCollectionEquality().hash(titleStyle),
     );
   }
 }

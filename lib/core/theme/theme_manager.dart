@@ -9,6 +9,11 @@ abstract class ThemeManager {
     useMaterial3: true,
     primaryColor: AppColors.lavaRed,
     scaffoldBackgroundColor: AppColors.rangoonGreen,
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.onyx,
+      surfaceTintColor: Colors.transparent,
+      elevation: 0,
+    ),
     cardTheme: CardTheme(
       color: AppColors.thunder,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
@@ -51,7 +56,12 @@ abstract class ThemeManager {
       selectionColor: AppColors.lavaRed,
       selectionHandleColor: AppColors.lavaRed,
     ),
-    progressIndicatorTheme: ProgressIndicatorThemeData(color: AppColors.white),
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: AppColors.lavaRed,
+      linearTrackColor: AppColors.white,
+      linearMinHeight: 5.h,
+      borderRadius: BorderRadius.circular(10.r),
+    ),
     textTheme: TextTheme(
       labelMedium: GoogleFonts.bangers(fontSize: 16.sp, color: AppColors.white),
       bodyLarge: GoogleFonts.bangers(fontSize: 16.sp, color: AppColors.white),
@@ -59,9 +69,23 @@ abstract class ThemeManager {
     extensions: [
       AppTheme(
         secondary: AppColors.saffronMango,
+        characterTheme: CharacterTheme(
+          characterNameStyle: GoogleFonts.bangers(
+            fontSize: 20,
+            color: AppColors.white,
+          ),
+          completionPercentageStyle: GoogleFonts.bangers(
+            fontSize: 20,
+            color: AppColors.silver,
+          ),
+        ),
         missionTheme: MissionTheme(
           cardBottomBarColor: AppColors.rangoonGreen,
           energyCardColor: AppColors.onyx,
+        ),
+        sliverAppBarTheme: SliverAppBarTheme(
+          backgroundColor: AppColors.onyx,
+          titleStyle: GoogleFonts.bangers(fontSize: 30, color: AppColors.white),
         ),
       ),
     ],
