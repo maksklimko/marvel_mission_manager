@@ -82,6 +82,18 @@ abstract class ThemeManager {
         missionTheme: MissionTheme(
           cardBottomBarColor: AppColors.rangoonGreen,
           energyCardColor: AppColors.onyx,
+          missionNameStyle: GoogleFonts.bangers(
+            fontSize: 30,
+            color: AppColors.white,
+          ),
+          missionPriorityStyle: GoogleFonts.bangers(
+            fontSize: 20,
+            color: AppColors.white,
+          ),
+          fatigueStyle: GoogleFonts.bangers(
+            fontSize: 16,
+            color: AppColors.saffronMango,
+          ),
         ),
         sliverAppBarTheme: SliverAppBarTheme(
           backgroundColor: AppColors.onyx,

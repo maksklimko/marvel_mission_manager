@@ -39,9 +39,15 @@ class MissionTheme extends ThemeExtension<MissionTheme>
   const MissionTheme({
     required this.cardBottomBarColor,
     required this.energyCardColor,
+    required this.missionNameStyle,
+    required this.missionPriorityStyle,
+    required this.fatigueStyle,
   });
   final Color cardBottomBarColor;
   final Color energyCardColor;
+  final TextStyle missionNameStyle;
+  final TextStyle missionPriorityStyle;
+  final TextStyle fatigueStyle;
 }
 
 @TailorMixinComponent()

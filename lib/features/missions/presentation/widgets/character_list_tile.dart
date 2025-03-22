@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:marvel_mission_manager/core/constants/assets.dart';
 import 'package:marvel_mission_manager/core/constants/colors.dart';
 import 'package:marvel_mission_manager/core/enums/mission_priority.dart';
@@ -17,8 +18,7 @@ class CharacterListTile extends StatelessWidget {
       (mission) => mission.priority == MissionPriority.worldEnding,
     );
 
-    return Container(
-      alignment: Alignment.center,
+    return Center(
       child: SizedBox(
         height: 220,
         width: 0.9.sw.clamp(0, 500), // 90% of screen width, max 500
@@ -27,62 +27,69 @@ class CharacterListTile extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              child: Card(
-                elevation: 10,
-                child: Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(15.r),
-                      child: Image.network(
-                        character.imageUrl,
-                        fit: BoxFit.fitHeight,
+              child: GestureDetector(
+                onTap:
+                    () => context.push(
+                      '/missions/${character.id}',
+                      extra: character,
+                    ),
+                child: Card(
+                  elevation: 10,
+                  child: Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15.r),
+                        child: Image.network(
+                          character.imageUrl,
+                          fit: BoxFit.fitHeight,
+                        ),
                       ),
-                    ),
-                    LayoutBuilder(
-                      builder: (context, constraints) {
-                        final spaceWidth = constraints.maxWidth * 0.3;
-                        final gradientWidth = constraints.maxWidth * 0.2;
-                        final contentWidth =
-                            constraints.maxWidth - spaceWidth - gradientWidth;
+                      LayoutBuilder(
+                        builder: (context, constraints) {
+                          final spaceWidth = constraints.maxWidth * 0.3;
+                          final gradientWidth = constraints.maxWidth * 0.2;
+                          final contentWidth =
+                              constraints.maxWidth - spaceWidth - gradientWidth;
 
-                        return Row(
-                          children: [
-                            SizedBox(width: spaceWidth),
-                            Container(
-                              width: gradientWidth,
-                              height: constraints.maxHeight,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.centerRight,
-                                  end: Alignment.centerLeft,
-                                  colors: [
-                                    AppColors.thunder,
-                                    AppColors.thunder.withAlpha(0),
-                                  ],
+                          return Row(
+                            children: [
+                              SizedBox(width: spaceWidth),
+                              Container(
+                                width: gradientWidth,
+                                height: constraints.maxHeight,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.centerRight,
+                                    end: Alignment.centerLeft,
+                                    colors: [
+                                      AppColors.thunder,
+                                      AppColors.thunder.withAlpha(0),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            Container(
-                              width: contentWidth,
-                              height: constraints.maxHeight,
-                              decoration: BoxDecoration(
-                                color: AppColors.thunder,
-                                border: Border.all(
-                                  width: 0.0,
+                              Container(
+                                width: contentWidth,
+                                height: constraints.maxHeight,
+                                decoration: BoxDecoration(
                                   color: AppColors.thunder,
+                                  border: Border.all(
+                                    width: 0.0,
+                                    color: AppColors.thunder,
+                                  ),
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(15.r),
+                                    bottomRight: Radius.circular(15.r),
+                                  ),
                                 ),
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(15.r),
-                                  bottomRight: Radius.circular(15.r),
-                                ),
+                                child: _characterDetails(character, context),
                               ),
-                              child: _characterDetails(character, context),
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  ],
+                            ],
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

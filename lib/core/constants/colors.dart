@@ -10,4 +10,6 @@ abstract class AppColors {
   static const Color rangoonGreen = Color(0xFF1B1B1B);
   static const Color onyx = Color(0xFF111111);
   static const Color silver = Color(0xFFBCBCBC);
+  static const Color gamboge = Color(0xFFD9910A);
+  static const Color electricViolet = Color(0xFF9111E1);
 }

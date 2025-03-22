@@ -146,12 +146,24 @@ mixin _$CharacterThemeTailorMixin on ThemeExtension<CharacterTheme> {
 mixin _$MissionThemeTailorMixin on ThemeExtension<MissionTheme> {
   Color get cardBottomBarColor;
   Color get energyCardColor;
+  TextStyle get missionNameStyle;
+  TextStyle get missionPriorityStyle;
+  TextStyle get fatigueStyle;
 
   @override
-  MissionTheme copyWith({Color? cardBottomBarColor, Color? energyCardColor}) {
+  MissionTheme copyWith({
+    Color? cardBottomBarColor,
+    Color? energyCardColor,
+    TextStyle? missionNameStyle,
+    TextStyle? missionPriorityStyle,
+    TextStyle? fatigueStyle,
+  }) {
     return MissionTheme(
       cardBottomBarColor: cardBottomBarColor ?? this.cardBottomBarColor,
       energyCardColor: energyCardColor ?? this.energyCardColor,
+      missionNameStyle: missionNameStyle ?? this.missionNameStyle,
+      missionPriorityStyle: missionPriorityStyle ?? this.missionPriorityStyle,
+      fatigueStyle: fatigueStyle ?? this.fatigueStyle,
     );
   }
 
@@ -162,6 +174,11 @@ mixin _$MissionThemeTailorMixin on ThemeExtension<MissionTheme> {
       cardBottomBarColor:
           Color.lerp(cardBottomBarColor, other.cardBottomBarColor, t)!,
       energyCardColor: Color.lerp(energyCardColor, other.energyCardColor, t)!,
+      missionNameStyle:
+          TextStyle.lerp(missionNameStyle, other.missionNameStyle, t)!,
+      missionPriorityStyle:
+          TextStyle.lerp(missionPriorityStyle, other.missionPriorityStyle, t)!,
+      fatigueStyle: TextStyle.lerp(fatigueStyle, other.fatigueStyle, t)!,
     );
   }
 
@@ -177,6 +194,18 @@ mixin _$MissionThemeTailorMixin on ThemeExtension<MissionTheme> {
             const DeepCollectionEquality().equals(
               energyCardColor,
               other.energyCardColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              missionNameStyle,
+              other.missionNameStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              missionPriorityStyle,
+              other.missionPriorityStyle,
+            ) &&
+            const DeepCollectionEquality().equals(
+              fatigueStyle,
+              other.fatigueStyle,
             ));
   }
 
@@ -186,6 +215,9 @@ mixin _$MissionThemeTailorMixin on ThemeExtension<MissionTheme> {
       runtimeType.hashCode,
       const DeepCollectionEquality().hash(cardBottomBarColor),
       const DeepCollectionEquality().hash(energyCardColor),
+      const DeepCollectionEquality().hash(missionNameStyle),
+      const DeepCollectionEquality().hash(missionPriorityStyle),
+      const DeepCollectionEquality().hash(fatigueStyle),
     );
   }
 }
