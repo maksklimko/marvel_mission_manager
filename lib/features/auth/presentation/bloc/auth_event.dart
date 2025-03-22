@@ -1,15 +1,9 @@
 part of 'auth_bloc.dart';
 
-@immutable
-class AuthEvent {
-  const AuthEvent();
-}
-
 @freezed
-abstract class AuthLoginEvent extends AuthEvent with _$AuthLoginEvent {
-  const AuthLoginEvent._() : super();
-  const factory AuthLoginEvent({
+abstract class AuthEvent with _$AuthEvent {
+  const factory AuthEvent.login({
     required String email,
     required String password,
-  }) = _AuthLoginEvent;
+  }) = AuthLoginEvent;
 }

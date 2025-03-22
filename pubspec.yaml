@@ -26,6 +26,7 @@ dependencies:
   injectable_generator: ^2.7.0
   json_annotation: ^4.9.0
   theme_tailor_annotation: ^3.0.2
+  another_flushbar: ^1.12.30
 
 dev_dependencies:
   flutter_test:

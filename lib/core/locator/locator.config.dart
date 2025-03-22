@@ -20,6 +20,10 @@ import 'package:marvel_mission_manager/features/auth/data/datasources/repositori
     as _i151;
 import 'package:marvel_mission_manager/features/auth/domain/repositories/auth_repository.dart'
     as _i372;
+import 'package:marvel_mission_manager/features/auth/domain/usecases/user_login.dart'
+    as _i785;
+import 'package:marvel_mission_manager/features/auth/presentation/bloc/auth_bloc.dart'
+    as _i1015;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -35,6 +39,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i372.AuthRepository>(
       () => _i151.AuthRepositoryImpl(gh<_i180.AuthRemoteDataSource>()),
+    );
+    gh.factory<_i785.UserLogin>(
+      () => _i785.UserLogin(gh<_i372.AuthRepository>()),
+    );
+    gh.singleton<_i1015.AuthBloc>(
+      () => _i1015.AuthBloc(userLogin: gh<_i785.UserLogin>()),
     );
     return this;
   }

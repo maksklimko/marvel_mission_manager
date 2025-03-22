@@ -12,6 +12,7 @@ class AppTheme extends ThemeExtension<AppTheme> with _$AppThemeTailorMixin {
     required this.missionTheme,
     required this.sliverAppBarTheme,
     required this.characterTheme,
+    required this.snackbarTheme,
   });
   //General
   final Color secondary;
@@ -20,6 +21,7 @@ class AppTheme extends ThemeExtension<AppTheme> with _$AppThemeTailorMixin {
   final CharacterTheme characterTheme;
   final MissionTheme missionTheme;
   final SliverAppBarTheme sliverAppBarTheme;
+  final SnackbarTheme snackbarTheme;
 }
 
 @TailorMixinComponent()
@@ -59,4 +61,17 @@ class SliverAppBarTheme extends ThemeExtension<SliverAppBarTheme>
   });
   final Color backgroundColor;
   final TextStyle titleStyle;
+}
+
+@TailorMixinComponent()
+class SnackbarTheme extends ThemeExtension<SnackbarTheme>
+    with _$SnackbarThemeTailorMixin {
+  const SnackbarTheme({
+    required this.backgroundColor,
+    required this.messageStyle,
+    required this.titleStyle,
+  });
+  final TextStyle titleStyle;
+  final TextStyle messageStyle;
+  final Color backgroundColor;
 }

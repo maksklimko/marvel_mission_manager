@@ -9,9 +9,9 @@ import 'package:marvel_mission_manager/core/utils/scroll_behaiviour.dart';
 import 'package:marvel_mission_manager/firebase_options.dart';
 
 void main() async {
-  configureDependencies();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  configureDependencies();
 
   await ScreenUtil.ensureScreenSize();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);

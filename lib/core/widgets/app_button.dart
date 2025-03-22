@@ -25,7 +25,13 @@ class AppButton extends StatelessWidget {
         onPressed: onPressed,
         child:
             isLoading
-                ? const CircularProgressIndicator(color: AppColors.white)
+                ? SizedBox(
+                  width: 25,
+                  height: 25,
+                  child: const CircularProgressIndicator(
+                    color: AppColors.white,
+                  ),
+                )
                 : Text(title, style: context.theme.textTheme.labelMedium),
       ),
     );

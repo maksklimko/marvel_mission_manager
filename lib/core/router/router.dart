@@ -5,7 +5,7 @@ import 'package:marvel_mission_manager/features/missions/presentation/screens/ch
 import 'package:marvel_mission_manager/features/missions/presentation/screens/missions_screen.dart';
 
 final router = GoRouter(
-  initialLocation: '/characters',
+  initialLocation: '/',
   routes: [
     GoRoute(path: '/', builder: (context, state) => LoginScreen()),
     GoRoute(

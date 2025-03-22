@@ -30,8 +30,8 @@ abstract class ThemeManager {
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppColors.rangoonGreen,
-      contentPadding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 10.w),
-      hintStyle: GoogleFonts.bangers(fontSize: 16.sp, color: AppColors.thunder),
+      contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+      hintStyle: GoogleFonts.bangers(fontSize: 16, color: AppColors.thunder),
       errorStyle: GoogleFonts.bangers(height: 0.01, color: Colors.transparent),
 
       errorBorder: OutlineInputBorder(
@@ -63,8 +63,8 @@ abstract class ThemeManager {
       borderRadius: BorderRadius.circular(10.r),
     ),
     textTheme: TextTheme(
-      labelMedium: GoogleFonts.bangers(fontSize: 16.sp, color: AppColors.white),
-      bodyLarge: GoogleFonts.bangers(fontSize: 16.sp, color: AppColors.white),
+      labelMedium: GoogleFonts.bangers(fontSize: 16, color: AppColors.white),
+      bodyLarge: GoogleFonts.bangers(fontSize: 16, color: AppColors.white),
     ),
     extensions: [
       AppTheme(
@@ -94,6 +94,14 @@ abstract class ThemeManager {
             fontSize: 16,
             color: AppColors.saffronMango,
           ),
+        ),
+        snackbarTheme: SnackbarTheme(
+          backgroundColor: AppColors.thunder,
+          messageStyle: GoogleFonts.bangers(
+            fontSize: 16,
+            color: AppColors.white,
+          ),
+          titleStyle: GoogleFonts.bangers(fontSize: 30, color: AppColors.white),
         ),
         sliverAppBarTheme: SliverAppBarTheme(
           backgroundColor: AppColors.onyx,
