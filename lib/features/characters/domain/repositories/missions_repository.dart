@@ -1,10 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:marvel_mission_manager/core/constants/failures.dart';
-import 'package:marvel_mission_manager/features/characters/data/models/mission_model.dart';
+import 'package:marvel_mission_manager/features/characters/domain/usecases/add_mission.dart';
 
 abstract interface class MissionsRepository {
-  Future<Either<FirestoreFailure, void>> addMission(
-    String characterId,
-    MissionModel mission,
-  );
+  Future<Either<FirestoreFailure, void>> addMission(AddMissionParams params);
 }

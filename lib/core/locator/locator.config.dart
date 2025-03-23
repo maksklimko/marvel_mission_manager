@@ -37,8 +37,12 @@ import 'package:marvel_mission_manager/features/characters/domain/repositories/c
     as _i196;
 import 'package:marvel_mission_manager/features/characters/domain/repositories/missions_repository.dart'
     as _i1005;
+import 'package:marvel_mission_manager/features/characters/domain/usecases/add_mission.dart'
+    as _i847;
 import 'package:marvel_mission_manager/features/characters/domain/usecases/get_characters.dart'
     as _i18;
+import 'package:marvel_mission_manager/features/characters/presentation/bloc/characters_bloc.dart'
+    as _i668;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -75,8 +79,18 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i785.UserLogin>(
       () => _i785.UserLogin(gh<_i372.AuthRepository>()),
     );
+    gh.factory<_i847.AddMission>(
+      () =>
+          _i847.AddMission(missionsRepository: gh<_i1005.MissionsRepository>()),
+    );
     gh.factory<_i18.GetCharacters>(
       () => _i18.GetCharacters(gh<_i196.CharactersRepository>()),
+    );
+    gh.singleton<_i668.CharactersBloc>(
+      () => _i668.CharactersBloc(
+        gh<_i18.GetCharacters>(),
+        gh<_i847.AddMission>(),
+      ),
     );
     gh.singleton<_i1015.AuthBloc>(
       () => _i1015.AuthBloc(userLogin: gh<_i785.UserLogin>()),
