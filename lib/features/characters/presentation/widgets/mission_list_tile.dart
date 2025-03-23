@@ -27,7 +27,7 @@ class MissionListTile extends StatelessWidget {
           child: Stack(
             children: [
               Padding(
-                padding: EdgeInsets.all(5.w),
+                padding: EdgeInsets.all(20),
                 child: Column(
                   children: [
                     Text(
@@ -43,7 +43,7 @@ class MissionListTile extends StatelessWidget {
                   Spacer(),
                   Container(
                     height: 40,
-                    padding: EdgeInsets.symmetric(horizontal: 5.w),
+                    padding: EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
                       color: context.appTheme.missionTheme.cardBottomBarColor,
                       borderRadius: BorderRadius.only(
@@ -66,9 +66,9 @@ class MissionListTile extends StatelessWidget {
                               ),
                         ),
                         Spacer(),
-                        SvgPicture.asset(Assets.fatigueIcon),
+                        SvgPicture.asset(Assets.fatigueIcon, height: 20),
                         Text(
-                          mission.requiredFatigue.toString(),
+                          mission.priority.getRequiredFatigue().toString(),
                           style: context.appTheme.missionTheme.fatigueStyle,
                         ),
                       ],

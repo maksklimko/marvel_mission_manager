@@ -9,6 +9,7 @@ import 'package:marvel_mission_manager/core/snackbar/snack_bar.dart';
 import 'package:marvel_mission_manager/core/utils/validators.dart';
 import 'package:marvel_mission_manager/core/widgets/app_button.dart';
 import 'package:marvel_mission_manager/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:marvel_mission_manager/features/characters/presentation/bloc/characters_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -19,16 +20,17 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _emailController = TextEditingController(text: 'manager@gmail.com');
+  final _passwordController = TextEditingController(text: 'manager');
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       bloc: getIt<AuthBloc>(),
-      listener: (context, state) {
+      listener: (context, state) async {
         switch (state) {
           case AuthAuthenticatedState():
+            getIt<CharactersBloc>().add(const CharactersLoadEvent());
             context.go('/characters');
             break;
           case AuthErrorState(failure: var failure):

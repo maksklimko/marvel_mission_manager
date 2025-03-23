@@ -6,16 +6,9 @@ class Mission with ModelConvertible<Mission, MissionModel> {
   final String id;
   final String name;
   final bool isCompleted;
-  final int requiredFatigue;
   final MissionPriority priority;
 
-  const Mission(
-    this.id,
-    this.name,
-    this.isCompleted,
-    this.requiredFatigue,
-    this.priority,
-  );
+  const Mission(this.id, this.name, this.isCompleted, this.priority);
 
   @override
   MissionModel toModel() {
@@ -23,7 +16,6 @@ class Mission with ModelConvertible<Mission, MissionModel> {
       id: id,
       name: name,
       isCompleted: isCompleted,
-      requiredFatigue: requiredFatigue,
       priority: priority,
     );
   }

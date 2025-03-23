@@ -21,7 +21,7 @@ class CharactersScreen extends StatelessWidget {
         title: Image.asset(Assets.marvelLogo, height: 30.h),
       ),
       body: BlocBuilder<CharactersBloc, CharactersState>(
-        bloc: getIt<CharactersBloc>()..add(CharactersLoadEvent()),
+        bloc: getIt<CharactersBloc>(),
         builder: (context, state) {
           return switch (state) {
             CharactersInitialState() => const SizedBox.shrink(),

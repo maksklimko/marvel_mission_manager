@@ -6,14 +6,12 @@ class MissionModel with EntityConvertible<MissionModel, Mission> {
   final String id;
   final String name;
   final bool isCompleted;
-  final int requiredFatigue;
   final MissionPriority priority;
 
   const MissionModel({
     required this.id,
     required this.name,
     required this.isCompleted,
-    required this.requiredFatigue,
     required this.priority,
   });
 
@@ -22,7 +20,6 @@ class MissionModel with EntityConvertible<MissionModel, Mission> {
       id: json['id'],
       name: json['name'],
       isCompleted: json['isCompleted'],
-      requiredFatigue: json['requiredFatigue'],
       priority: MissionPriority.fromName(json['priority']),
     );
   }
@@ -32,14 +29,13 @@ class MissionModel with EntityConvertible<MissionModel, Mission> {
       'id': id,
       'name': name,
       'isCompleted': isCompleted,
-      'requiredFatigue': requiredFatigue,
       'priority': priority.index,
     };
   }
 
   @override
   Mission toEntity() {
-    return Mission(id, name, isCompleted, requiredFatigue, priority);
+    return Mission(id, name, isCompleted, priority);
   }
 
   @override
@@ -48,7 +44,6 @@ class MissionModel with EntityConvertible<MissionModel, Mission> {
       id: model.id,
       name: model.name,
       isCompleted: model.isCompleted,
-      requiredFatigue: model.requiredFatigue,
       priority: model.priority,
     );
   }

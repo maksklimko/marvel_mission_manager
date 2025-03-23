@@ -155,6 +155,7 @@ mixin _$CharacterThemeTailorMixin on ThemeExtension<CharacterTheme> {
 }
 
 mixin _$MissionThemeTailorMixin on ThemeExtension<MissionTheme> {
+  Color get topBarBackgroundColor;
   Color get cardBottomBarColor;
   Color get energyCardColor;
   TextStyle get missionNameStyle;
@@ -163,6 +164,7 @@ mixin _$MissionThemeTailorMixin on ThemeExtension<MissionTheme> {
 
   @override
   MissionTheme copyWith({
+    Color? topBarBackgroundColor,
     Color? cardBottomBarColor,
     Color? energyCardColor,
     TextStyle? missionNameStyle,
@@ -170,6 +172,8 @@ mixin _$MissionThemeTailorMixin on ThemeExtension<MissionTheme> {
     TextStyle? fatigueStyle,
   }) {
     return MissionTheme(
+      topBarBackgroundColor:
+          topBarBackgroundColor ?? this.topBarBackgroundColor,
       cardBottomBarColor: cardBottomBarColor ?? this.cardBottomBarColor,
       energyCardColor: energyCardColor ?? this.energyCardColor,
       missionNameStyle: missionNameStyle ?? this.missionNameStyle,
@@ -182,6 +186,8 @@ mixin _$MissionThemeTailorMixin on ThemeExtension<MissionTheme> {
   MissionTheme lerp(covariant ThemeExtension<MissionTheme>? other, double t) {
     if (other is! MissionTheme) return this as MissionTheme;
     return MissionTheme(
+      topBarBackgroundColor:
+          Color.lerp(topBarBackgroundColor, other.topBarBackgroundColor, t)!,
       cardBottomBarColor:
           Color.lerp(cardBottomBarColor, other.cardBottomBarColor, t)!,
       energyCardColor: Color.lerp(energyCardColor, other.energyCardColor, t)!,
@@ -198,6 +204,10 @@ mixin _$MissionThemeTailorMixin on ThemeExtension<MissionTheme> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is MissionTheme &&
+            const DeepCollectionEquality().equals(
+              topBarBackgroundColor,
+              other.topBarBackgroundColor,
+            ) &&
             const DeepCollectionEquality().equals(
               cardBottomBarColor,
               other.cardBottomBarColor,
@@ -224,6 +234,7 @@ mixin _$MissionThemeTailorMixin on ThemeExtension<MissionTheme> {
   int get hashCode {
     return Object.hash(
       runtimeType.hashCode,
+      const DeepCollectionEquality().hash(topBarBackgroundColor),
       const DeepCollectionEquality().hash(cardBottomBarColor),
       const DeepCollectionEquality().hash(energyCardColor),
       const DeepCollectionEquality().hash(missionNameStyle),

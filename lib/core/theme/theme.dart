@@ -44,7 +44,9 @@ class MissionTheme extends ThemeExtension<MissionTheme>
     required this.missionNameStyle,
     required this.missionPriorityStyle,
     required this.fatigueStyle,
+    required this.topBarBackgroundColor,
   });
+  final Color topBarBackgroundColor;
   final Color cardBottomBarColor;
   final Color energyCardColor;
   final TextStyle missionNameStyle;

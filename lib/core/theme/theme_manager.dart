@@ -80,6 +80,7 @@ abstract class ThemeManager {
           ),
         ),
         missionTheme: MissionTheme(
+          topBarBackgroundColor: AppColors.onyx,
           cardBottomBarColor: AppColors.rangoonGreen,
           energyCardColor: AppColors.onyx,
           missionNameStyle: GoogleFonts.bangers(
@@ -91,7 +92,7 @@ abstract class ThemeManager {
             color: AppColors.white,
           ),
           fatigueStyle: GoogleFonts.bangers(
-            fontSize: 16,
+            fontSize: 20,
             color: AppColors.saffronMango,
           ),
         ),
