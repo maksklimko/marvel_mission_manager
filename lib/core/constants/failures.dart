@@ -18,3 +18,9 @@ class AuthFailure extends Failure {
   AuthFailure.tooManyRequests() : super(authTooManyRequests);
   AuthFailure.invalidEmail() : super(authInvalidEmail);
 }
+
+class FirestoreFailure extends Failure {
+  static const String firestoreUnknownError = 'Firestore unknown error';
+
+  FirestoreFailure.unknownError() : super(firestoreUnknownError);
+}

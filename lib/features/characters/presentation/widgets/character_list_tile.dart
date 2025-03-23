@@ -6,11 +6,11 @@ import 'package:marvel_mission_manager/core/constants/assets.dart';
 import 'package:marvel_mission_manager/core/constants/colors.dart';
 import 'package:marvel_mission_manager/core/enums/mission_priority.dart';
 import 'package:marvel_mission_manager/core/theme/theme.dart';
-import 'package:marvel_mission_manager/features/missions/domain/models/character_model.dart';
+import 'package:marvel_mission_manager/features/characters/domain/entities/character.dart';
 
 class CharacterListTile extends StatelessWidget {
   const CharacterListTile({super.key, required this.character});
-  final CharacterModel character;
+  final Character character;
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +100,7 @@ class CharacterListTile extends StatelessWidget {
     );
   }
 
-  _characterDetails(CharacterModel character, BuildContext context) {
+  _characterDetails(Character character, BuildContext context) {
     final completedMissions =
         character.missions.where((mission) => mission.isCompleted).length;
     final completionPercentage = completedMissions / character.missions.length;

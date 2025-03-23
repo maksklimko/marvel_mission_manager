@@ -6,11 +6,11 @@ import 'package:marvel_mission_manager/core/constants/colors.dart';
 import 'package:marvel_mission_manager/core/enums/mission_priority.dart';
 import 'package:marvel_mission_manager/core/extensions/theme_extension.dart';
 import 'package:marvel_mission_manager/core/theme/theme.dart';
-import 'package:marvel_mission_manager/features/missions/domain/models/mission_model.dart';
+import 'package:marvel_mission_manager/features/characters/domain/entities/mission.dart';
 
 class MissionListTile extends StatelessWidget {
   const MissionListTile({super.key, required this.mission});
-  final MissionModel mission;
+  final Mission mission;
 
   @override
   Widget build(BuildContext context) {

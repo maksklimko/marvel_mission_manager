@@ -4,9 +4,9 @@ import 'package:marvel_mission_manager/core/constants/assets.dart';
 import 'package:marvel_mission_manager/core/constants/strings.dart';
 import 'package:marvel_mission_manager/core/enums/mission_priority.dart';
 import 'package:marvel_mission_manager/core/theme/theme.dart';
-import 'package:marvel_mission_manager/features/missions/domain/models/character_model.dart';
-import 'package:marvel_mission_manager/features/missions/domain/models/mission_model.dart';
-import 'package:marvel_mission_manager/features/missions/presentation/widgets/character_list_tile.dart';
+import 'package:marvel_mission_manager/features/characters/domain/entities/character.dart';
+import 'package:marvel_mission_manager/features/characters/domain/entities/mission.dart';
+import 'package:marvel_mission_manager/features/characters/presentation/widgets/character_list_tile.dart';
 
 class CharactersScreen extends StatelessWidget {
   const CharactersScreen({super.key});
@@ -54,26 +54,19 @@ class CharactersScreen extends StatelessWidget {
               int index,
             ) {
               return CharacterListTile(
-                character: CharacterModel(
-                  id: 1,
-                  name: "spider-man",
-                  imageUrl:
-                      "https://images.unsplash.com/photo-1742241461508-07dfb49187c1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8",
-                  fatigue: 100,
-                  missions: [
-                    MissionModel(
-                      id: 1,
-                      name: "spider-man",
-                      isCompleted: false,
-                      requiredFatigue: 1,
-                      priority: MissionPriority.low,
-                    ),
-                    MissionModel(
-                      id: 2,
-                      name: "spider-man",
-                      isCompleted: true,
-                      requiredFatigue: 10,
-                      priority: MissionPriority.worldEnding,
+                character: Character(
+                  "1",
+                  "spider-man",
+                  "https://images.unsplash.com/photo-1742241461508-07dfb49187c1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxfHx8ZW58MHx8fHx8",
+                  100,
+                  [
+                    Mission("1", "spider-man", false, 1, MissionPriority.low),
+                    Mission(
+                      "2",
+                      "spider-man",
+                      true,
+                      10,
+                      MissionPriority.worldEnding,
                     ),
                   ],
                 ),
