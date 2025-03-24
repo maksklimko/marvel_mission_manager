@@ -8,6 +8,7 @@ import 'package:marvel_mission_manager/core/utils/validators.dart';
 import 'package:marvel_mission_manager/core/widgets/app_button.dart';
 import 'package:marvel_mission_manager/core/widgets/back_button.dart';
 import 'package:marvel_mission_manager/core/widgets/custom_app_bar.dart';
+import 'package:marvel_mission_manager/features/characters/domain/entities/character.dart';
 import 'package:marvel_mission_manager/features/characters/domain/entities/mission.dart';
 import 'package:marvel_mission_manager/features/characters/domain/usecases/add_mission.dart';
 import 'package:marvel_mission_manager/features/characters/presentation/bloc/characters_bloc.dart';
@@ -15,8 +16,8 @@ import 'package:marvel_mission_manager/features/characters/presentation/widgets/
 import 'package:uuid/uuid.dart';
 
 class AddMissionScreen extends StatefulWidget {
-  const AddMissionScreen({super.key, required this.characterId});
-  final String characterId;
+  const AddMissionScreen({super.key, required this.character});
+  final Character character;
 
   @override
   State<AddMissionScreen> createState() => _AddMissionScreenState();
@@ -70,7 +71,7 @@ class _AddMissionScreenState extends State<AddMissionScreen> {
                           getIt<CharactersBloc>().add(
                             CharactersAddMissionEvent(
                               AddMissionParams(
-                                characterId: widget.characterId,
+                                characterId: widget.character.id,
                                 mission: Mission(
                                   Uuid().v4(),
                                   _missionNameController.text,
@@ -80,7 +81,10 @@ class _AddMissionScreenState extends State<AddMissionScreen> {
                               ),
                             ),
                           );
-                          context.pop();
+
+                          context.pop(
+                            _isFatigueOverLimit(widget.character.missions, 100),
+                          );
                         }
                       },
                       title: Strings.create,
@@ -94,5 +98,15 @@ class _AddMissionScreenState extends State<AddMissionScreen> {
         ),
       ),
     );
+  }
+
+  int _sumUncompletedMissionsFatigue(List<Mission> missions) {
+    return missions
+        .where((mission) => !mission.isCompleted)
+        .fold(0, (sum, mission) => sum + mission.priority.getRequiredFatigue());
+  }
+
+  bool _isFatigueOverLimit(List<Mission> missions, int limit) {
+    return _sumUncompletedMissionsFatigue(missions) > limit;
   }
 }

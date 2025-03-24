@@ -31,7 +31,7 @@ class CharacterListTile extends StatelessWidget {
                 onTap:
                     () => context.push(
                       '/missions/${character.id}',
-                      extra: character.id,
+                      extra: character,
                     ),
                 child: Card(
                   elevation: 10,

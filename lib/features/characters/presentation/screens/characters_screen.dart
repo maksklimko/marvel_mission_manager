@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:marvel_mission_manager/core/constants/colors.dart';
 import 'package:marvel_mission_manager/core/constants/strings.dart';
 import 'package:marvel_mission_manager/core/locator/locator.dart';
 import 'package:marvel_mission_manager/core/theme/theme.dart';

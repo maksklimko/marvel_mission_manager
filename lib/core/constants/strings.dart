@@ -7,4 +7,5 @@ abstract class Strings {
   static const String create = 'Create';
   static const String complete = 'Complete';
   static const String completed = 'Completed';
+  static const String nickFuryIsCalling = 'Nick Fury is calling!';
 }
