@@ -141,6 +141,72 @@ as AddMissionParams,
 }
 
 /// @nodoc
+
+
+class CharactersDeleteMissionEvent implements CharactersEvent {
+  const CharactersDeleteMissionEvent(this.params);
+  
+
+ final  DeleteMissionParams params;
+
+/// Create a copy of CharactersEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CharactersDeleteMissionEventCopyWith<CharactersDeleteMissionEvent> get copyWith => _$CharactersDeleteMissionEventCopyWithImpl<CharactersDeleteMissionEvent>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CharactersDeleteMissionEvent&&(identical(other.params, params) || other.params == params));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,params);
+
+@override
+String toString() {
+  return 'CharactersEvent.deleteMission(params: $params)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CharactersDeleteMissionEventCopyWith<$Res> implements $CharactersEventCopyWith<$Res> {
+  factory $CharactersDeleteMissionEventCopyWith(CharactersDeleteMissionEvent value, $Res Function(CharactersDeleteMissionEvent) _then) = _$CharactersDeleteMissionEventCopyWithImpl;
+@useResult
+$Res call({
+ DeleteMissionParams params
+});
+
+
+
+
+}
+/// @nodoc
+class _$CharactersDeleteMissionEventCopyWithImpl<$Res>
+    implements $CharactersDeleteMissionEventCopyWith<$Res> {
+  _$CharactersDeleteMissionEventCopyWithImpl(this._self, this._then);
+
+  final CharactersDeleteMissionEvent _self;
+  final $Res Function(CharactersDeleteMissionEvent) _then;
+
+/// Create a copy of CharactersEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? params = null,}) {
+  return _then(CharactersDeleteMissionEvent(
+null == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as DeleteMissionParams,
+  ));
+}
+
+
+}
+
+/// @nodoc
 mixin _$CharactersState {
 
 

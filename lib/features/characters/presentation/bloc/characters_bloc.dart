@@ -5,6 +5,7 @@ import 'package:marvel_mission_manager/core/constants/failures.dart';
 import 'package:marvel_mission_manager/core/usecase/usecase.dart';
 import 'package:marvel_mission_manager/features/characters/domain/entities/character.dart';
 import 'package:marvel_mission_manager/features/characters/domain/usecases/add_mission.dart';
+import 'package:marvel_mission_manager/features/characters/domain/usecases/delete_mission.dart';
 import 'package:marvel_mission_manager/features/characters/domain/usecases/get_characters.dart';
 
 part 'characters_event.dart';
@@ -15,8 +16,9 @@ part 'characters_bloc.freezed.dart';
 class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
   final GetCharacters getCharactersUseCase;
   final AddMission addMission;
+  final DeleteMission deleteMission;
 
-  CharactersBloc(this.getCharactersUseCase, this.addMission)
+  CharactersBloc(this.getCharactersUseCase, this.addMission, this.deleteMission)
     : super(const CharactersInitialState()) {
     on<CharactersLoadEvent>((event, emit) async {
       emit(const CharactersLoadingState());
@@ -29,6 +31,11 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
     on<CharactersAddMissionEvent>((event, emit) async {
       emit(const CharactersLoadingState());
       await addMission.call(event.params);
+      add(CharactersLoadEvent());
+    });
+    on<CharactersDeleteMissionEvent>((event, emit) async {
+      emit(const CharactersLoadingState());
+      await deleteMission.call(event.params);
       add(CharactersLoadEvent());
     });
   }

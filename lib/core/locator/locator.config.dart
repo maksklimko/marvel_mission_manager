@@ -39,6 +39,8 @@ import 'package:marvel_mission_manager/features/characters/domain/repositories/m
     as _i1005;
 import 'package:marvel_mission_manager/features/characters/domain/usecases/add_mission.dart'
     as _i847;
+import 'package:marvel_mission_manager/features/characters/domain/usecases/delete_mission.dart'
+    as _i312;
 import 'package:marvel_mission_manager/features/characters/domain/usecases/get_characters.dart'
     as _i18;
 import 'package:marvel_mission_manager/features/characters/presentation/bloc/characters_bloc.dart'
@@ -86,14 +88,18 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i18.GetCharacters>(
       () => _i18.GetCharacters(gh<_i196.CharactersRepository>()),
     );
+    gh.factory<_i312.DeleteMission>(
+      () => _i312.DeleteMission(gh<_i1005.MissionsRepository>()),
+    );
+    gh.singleton<_i1015.AuthBloc>(
+      () => _i1015.AuthBloc(userLogin: gh<_i785.UserLogin>()),
+    );
     gh.singleton<_i668.CharactersBloc>(
       () => _i668.CharactersBloc(
         gh<_i18.GetCharacters>(),
         gh<_i847.AddMission>(),
+        gh<_i312.DeleteMission>(),
       ),
-    );
-    gh.singleton<_i1015.AuthBloc>(
-      () => _i1015.AuthBloc(userLogin: gh<_i785.UserLogin>()),
     );
     return this;
   }

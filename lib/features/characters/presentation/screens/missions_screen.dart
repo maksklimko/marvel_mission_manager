@@ -7,6 +7,7 @@ import 'package:marvel_mission_manager/core/locator/locator.dart';
 import 'package:marvel_mission_manager/core/theme/theme.dart';
 import 'package:marvel_mission_manager/core/widgets/back_button.dart';
 import 'package:marvel_mission_manager/core/widgets/custom_app_bar.dart';
+import 'package:marvel_mission_manager/features/characters/domain/usecases/delete_mission.dart';
 import 'package:marvel_mission_manager/features/characters/presentation/bloc/characters_bloc.dart';
 import 'package:marvel_mission_manager/features/characters/presentation/widgets/mission_list_tile.dart';
 
@@ -64,12 +65,27 @@ class MissionsScreen extends StatelessWidget {
                 ),
               ),
               SliverToBoxAdapter(child: SizedBox(height: 10.h)),
-              SliverList.separated(
-                separatorBuilder: (BuildContext context, int index) {
-                  return SizedBox(height: 10.h);
-                },
+              SliverList.builder(
                 itemBuilder: (BuildContext context, int index) {
-                  return MissionListTile(mission: character.missions[index]);
+                  return Dismissible(
+                    key: UniqueKey(),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10),
+                      child: MissionListTile(
+                        mission: character.missions[index],
+                      ),
+                    ),
+                    onDismissed: (direction) {
+                      getIt<CharactersBloc>().add(
+                        CharactersDeleteMissionEvent(
+                          DeleteMissionParams(
+                            characterId: character.id,
+                            mission: character.missions[index],
+                          ),
+                        ),
+                      );
+                    },
+                  );
                 },
                 itemCount: character.missions.length,
               ),

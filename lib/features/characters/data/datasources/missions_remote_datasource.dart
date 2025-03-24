@@ -10,6 +10,10 @@ abstract interface class MissionsRemoteDataSource {
     String characterId,
     Mission mission,
   );
+  Future<Either<FirestoreFailure, void>> deleteMission(
+    String characterId,
+    Mission mission,
+  );
 }
 
 @Injectable(as: MissionsRemoteDataSource)
@@ -25,6 +29,21 @@ class MissionsRemoteDataSourceImpl implements MissionsRemoteDataSource {
     try {
       await firebaseFirestore.collection('characters').doc(characterId).update({
         'missions': FieldValue.arrayUnion([mission.toModel().toJson()]),
+      });
+      return right(null);
+    } catch (e) {
+      return left(FirestoreFailure.unknownError());
+    }
+  }
+
+  @override
+  Future<Either<FirestoreFailure, void>> deleteMission(
+    String characterId,
+    Mission mission,
+  ) async {
+    try {
+      await firebaseFirestore.collection('characters').doc(characterId).update({
+        'missions': FieldValue.arrayRemove([mission.toModel().toJson()]),
       });
       return right(null);
     } catch (e) {
