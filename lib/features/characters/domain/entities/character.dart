@@ -14,4 +14,8 @@ class Character {
     this.fatigue,
     this.missions,
   );
+
+  Character copyWith({List<Mission>? missions}) {
+    return Character(id, name, imageUrl, fatigue, missions ?? this.missions);
+  }
 }

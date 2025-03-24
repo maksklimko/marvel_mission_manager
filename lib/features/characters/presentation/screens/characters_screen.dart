@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:marvel_mission_manager/core/constants/colors.dart';
 import 'package:marvel_mission_manager/core/constants/strings.dart';
 import 'package:marvel_mission_manager/core/locator/locator.dart';
 import 'package:marvel_mission_manager/core/theme/theme.dart';
@@ -9,6 +10,7 @@ import 'package:marvel_mission_manager/core/widgets/error_widget.dart';
 import 'package:marvel_mission_manager/features/characters/domain/entities/character.dart';
 import 'package:marvel_mission_manager/features/characters/presentation/bloc/characters_bloc.dart';
 import 'package:marvel_mission_manager/features/characters/presentation/widgets/character_list_tile.dart';
+import 'package:marvel_mission_manager/features/characters/presentation/widgets/manager_stats.dart';
 
 class CharactersScreen extends StatelessWidget {
   const CharactersScreen({super.key});
@@ -46,10 +48,15 @@ class CharactersScreen extends StatelessWidget {
         SliverAppBar(
           stretch: true,
           pinned: true,
-          expandedHeight: 100.h,
-          collapsedHeight: 40.h,
+          expandedHeight: 100,
+          collapsedHeight: 60,
           backgroundColor: context.appTheme.sliverAppBarTheme.backgroundColor,
           flexibleSpace: Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: context.appTheme.sliverAppBarTheme.backgroundColor,
+              ),
+            ),
             alignment: Alignment.center,
             child: Text(
               Strings.missionManager,
@@ -59,15 +66,17 @@ class CharactersScreen extends StatelessWidget {
         ),
         SliverAppBar(
           pinned: false,
-          expandedHeight: 150.h,
-          collapsedHeight: 40.h,
+          expandedHeight: 150,
+          collapsedHeight: 150,
           backgroundColor: context.appTheme.sliverAppBarTheme.backgroundColor,
           flexibleSpace: Container(
-            alignment: Alignment.center,
-            child: Text(
-              Strings.missionManager,
-              style: context.appTheme.sliverAppBarTheme.titleStyle,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: context.appTheme.sliverAppBarTheme.backgroundColor,
+              ),
             ),
+            alignment: Alignment.center,
+            child: ManagerStats(characters: characters),
           ),
         ),
         SliverList.builder(

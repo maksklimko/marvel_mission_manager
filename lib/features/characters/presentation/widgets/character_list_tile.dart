@@ -103,7 +103,10 @@ class CharacterListTile extends StatelessWidget {
   _characterDetails(Character character, BuildContext context) {
     final completedMissions =
         character.missions.where((mission) => mission.isCompleted).length;
-    final completionPercentage = completedMissions / character.missions.length;
+    var completionPercentage = 0.0;
+    if (character.missions.isNotEmpty) {
+      completionPercentage = completedMissions / character.missions.length;
+    }
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30.h),
       child: Column(

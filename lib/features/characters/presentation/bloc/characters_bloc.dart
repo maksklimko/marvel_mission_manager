@@ -33,20 +33,72 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
         (characters) => emit(CharactersLoadedState(characters)),
       );
     });
-    on<CharactersAddMissionEvent>((event, emit) async {
-      emit(const CharactersLoadingState());
-      await addMission.call(event.params);
-      add(CharactersLoadEvent());
+    on<CharactersAddMissionEvent>((event, emit) {
+      addMission.call(event.params);
+      if (state is CharactersLoadedState) {
+        final characters = (state as CharactersLoadedState).characters;
+        final updatedCharacters =
+            characters
+                .map(
+                  (e) =>
+                      e.id == event.params.characterId
+                          ? e.copyWith(
+                            missions: [...e.missions, event.params.mission],
+                          )
+                          : e,
+                )
+                .toList();
+        emit(CharactersLoadedState(updatedCharacters));
+      }
     });
-    on<CharactersDeleteMissionEvent>((event, emit) async {
-      emit(const CharactersLoadingState());
-      await deleteMission.call(event.params);
-      add(CharactersLoadEvent());
+    on<CharactersDeleteMissionEvent>((event, emit) {
+      deleteMission.call(event.params);
+      if (state is CharactersLoadedState) {
+        final characters = (state as CharactersLoadedState).characters;
+        final updatedCharacters =
+            characters
+                .map(
+                  (e) =>
+                      e.id == event.params.characterId
+                          ? e.copyWith(
+                            missions:
+                                e.missions
+                                    .where(
+                                      (m) => m.id != event.params.mission.id,
+                                    )
+                                    .toList(),
+                          )
+                          : e,
+                )
+                .toList();
+        emit(CharactersLoadedState(updatedCharacters));
+      }
     });
-    on<CharactersCompleteMissionEvent>((event, emit) async {
-      emit(const CharactersLoadingState());
-      await completeMission.call(event.params);
-      add(CharactersLoadEvent());
+    on<CharactersCompleteMissionEvent>((event, emit) {
+      completeMission.call(event.params);
+      if (state is CharactersLoadedState) {
+        final characters = (state as CharactersLoadedState).characters;
+        final updatedCharacters =
+            characters
+                .map(
+                  (e) =>
+                      e.id == event.params.characterId
+                          ? e.copyWith(
+                            missions:
+                                e.missions
+                                    .map(
+                                      (m) =>
+                                          m.id == event.params.mission.id
+                                              ? m.copyWith(isCompleted: true)
+                                              : m,
+                                    )
+                                    .toList(),
+                          )
+                          : e,
+                )
+                .toList();
+        emit(CharactersLoadedState(updatedCharacters));
+      }
     });
   }
 }
