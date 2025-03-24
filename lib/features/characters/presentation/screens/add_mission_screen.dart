@@ -50,8 +50,18 @@ class _AddMissionScreenState extends State<AddMissionScreen> {
                       ),
                     ),
                     const Spacer(flex: 2),
-                    MissionPriorityPicker(
-                      onChanged: (priority) => _selectedPriority = priority,
+                    Row(
+                      children: [
+                        Spacer(),
+                        Flexible(
+                          flex: 3,
+                          child: MissionPriorityPicker(
+                            onChanged:
+                                (priority) => _selectedPriority = priority,
+                          ),
+                        ),
+                        Spacer(),
+                      ],
                     ),
                     const Spacer(flex: 2),
                     AppButton(
