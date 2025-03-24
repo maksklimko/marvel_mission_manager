@@ -15,6 +15,7 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
   MissionTheme get missionTheme;
   SliverAppBarTheme get sliverAppBarTheme;
   SnackbarTheme get snackbarTheme;
+  MissionPriorityPickerTheme get missionPriorityPickerTheme;
 
   @override
   AppTheme copyWith({
@@ -23,6 +24,7 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
     MissionTheme? missionTheme,
     SliverAppBarTheme? sliverAppBarTheme,
     SnackbarTheme? snackbarTheme,
+    MissionPriorityPickerTheme? missionPriorityPickerTheme,
   }) {
     return AppTheme(
       secondary: secondary ?? this.secondary,
@@ -30,6 +32,8 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
       missionTheme: missionTheme ?? this.missionTheme,
       sliverAppBarTheme: sliverAppBarTheme ?? this.sliverAppBarTheme,
       snackbarTheme: snackbarTheme ?? this.snackbarTheme,
+      missionPriorityPickerTheme:
+          missionPriorityPickerTheme ?? this.missionPriorityPickerTheme,
     );
   }
 
@@ -46,6 +50,9 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
               as SliverAppBarTheme,
       snackbarTheme:
           snackbarTheme.lerp(other.snackbarTheme, t) as SnackbarTheme,
+      missionPriorityPickerTheme:
+          missionPriorityPickerTheme.lerp(other.missionPriorityPickerTheme, t)
+              as MissionPriorityPickerTheme,
     );
   }
 
@@ -70,6 +77,10 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
             const DeepCollectionEquality().equals(
               snackbarTheme,
               other.snackbarTheme,
+            ) &&
+            const DeepCollectionEquality().equals(
+              missionPriorityPickerTheme,
+              other.missionPriorityPickerTheme,
             ));
   }
 
@@ -82,6 +93,7 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
       const DeepCollectionEquality().hash(missionTheme),
       const DeepCollectionEquality().hash(sliverAppBarTheme),
       const DeepCollectionEquality().hash(snackbarTheme),
+      const DeepCollectionEquality().hash(missionPriorityPickerTheme),
     );
   }
 }
@@ -93,6 +105,8 @@ extension AppThemeBuildContextProps on BuildContext {
   MissionTheme get missionTheme => appTheme.missionTheme;
   SliverAppBarTheme get sliverAppBarTheme => appTheme.sliverAppBarTheme;
   SnackbarTheme get snackbarTheme => appTheme.snackbarTheme;
+  MissionPriorityPickerTheme get missionPriorityPickerTheme =>
+      appTheme.missionPriorityPickerTheme;
 }
 
 mixin _$CharacterThemeTailorMixin on ThemeExtension<CharacterTheme> {
@@ -347,6 +361,66 @@ mixin _$SnackbarThemeTailorMixin on ThemeExtension<SnackbarTheme> {
       const DeepCollectionEquality().hash(titleStyle),
       const DeepCollectionEquality().hash(messageStyle),
       const DeepCollectionEquality().hash(backgroundColor),
+    );
+  }
+}
+
+mixin _$MissionPriorityPickerThemeTailorMixin
+    on ThemeExtension<MissionPriorityPickerTheme> {
+  Color get backgroundColor;
+  Color get selectionColor;
+  TextStyle get textStyle;
+
+  @override
+  MissionPriorityPickerTheme copyWith({
+    Color? backgroundColor,
+    Color? selectionColor,
+    TextStyle? textStyle,
+  }) {
+    return MissionPriorityPickerTheme(
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      selectionColor: selectionColor ?? this.selectionColor,
+      textStyle: textStyle ?? this.textStyle,
+    );
+  }
+
+  @override
+  MissionPriorityPickerTheme lerp(
+    covariant ThemeExtension<MissionPriorityPickerTheme>? other,
+    double t,
+  ) {
+    if (other is! MissionPriorityPickerTheme)
+      return this as MissionPriorityPickerTheme;
+    return MissionPriorityPickerTheme(
+      backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
+      selectionColor: Color.lerp(selectionColor, other.selectionColor, t)!,
+      textStyle: TextStyle.lerp(textStyle, other.textStyle, t)!,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is MissionPriorityPickerTheme &&
+            const DeepCollectionEquality().equals(
+              backgroundColor,
+              other.backgroundColor,
+            ) &&
+            const DeepCollectionEquality().equals(
+              selectionColor,
+              other.selectionColor,
+            ) &&
+            const DeepCollectionEquality().equals(textStyle, other.textStyle));
+  }
+
+  @override
+  int get hashCode {
+    return Object.hash(
+      runtimeType.hashCode,
+      const DeepCollectionEquality().hash(backgroundColor),
+      const DeepCollectionEquality().hash(selectionColor),
+      const DeepCollectionEquality().hash(textStyle),
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marvel_mission_manager/core/constants/assets.dart';
 import 'package:marvel_mission_manager/core/constants/colors.dart';
-import 'package:marvel_mission_manager/core/enums/mission_priority.dart';
 import 'package:marvel_mission_manager/core/extensions/theme_extension.dart';
 import 'package:marvel_mission_manager/core/theme/theme.dart';
 import 'package:marvel_mission_manager/features/characters/domain/entities/mission.dart';
@@ -59,14 +58,11 @@ class MissionListTile extends StatelessWidget {
                               .appTheme
                               .missionTheme
                               .missionPriorityStyle
-                              .copyWith(
-                                color: _getMissionPriorityColor(
-                                  mission.priority,
-                                ),
-                              ),
+                              .copyWith(color: mission.priority.getColor()),
                         ),
                         Spacer(),
                         SvgPicture.asset(Assets.fatigueIcon, height: 20),
+                        SizedBox(width: 5),
                         Text(
                           mission.priority.getRequiredFatigue().toString(),
                           style: context.appTheme.missionTheme.fatigueStyle,
@@ -81,14 +77,5 @@ class MissionListTile extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  _getMissionPriorityColor(MissionPriority priority) {
-    return switch (priority) {
-      MissionPriority.low => AppColors.white,
-      MissionPriority.medium => AppColors.saffronMango,
-      MissionPriority.high => AppColors.gamboge,
-      MissionPriority.worldEnding => AppColors.electricViolet,
-    };
   }
 }

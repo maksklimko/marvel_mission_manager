@@ -29,7 +29,7 @@ class MissionModel with EntityConvertible<MissionModel, Mission> {
       'id': id,
       'name': name,
       'isCompleted': isCompleted,
-      'priority': priority.index,
+      'priority': priority.name,
     };
   }
 

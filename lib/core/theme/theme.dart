@@ -13,6 +13,7 @@ class AppTheme extends ThemeExtension<AppTheme> with _$AppThemeTailorMixin {
     required this.sliverAppBarTheme,
     required this.characterTheme,
     required this.snackbarTheme,
+    required this.missionPriorityPickerTheme,
   });
   //General
   final Color secondary;
@@ -22,6 +23,7 @@ class AppTheme extends ThemeExtension<AppTheme> with _$AppThemeTailorMixin {
   final MissionTheme missionTheme;
   final SliverAppBarTheme sliverAppBarTheme;
   final SnackbarTheme snackbarTheme;
+  final MissionPriorityPickerTheme missionPriorityPickerTheme;
 }
 
 @TailorMixinComponent()
@@ -76,4 +78,18 @@ class SnackbarTheme extends ThemeExtension<SnackbarTheme>
   final TextStyle titleStyle;
   final TextStyle messageStyle;
   final Color backgroundColor;
+}
+
+@TailorMixinComponent()
+class MissionPriorityPickerTheme
+    extends ThemeExtension<MissionPriorityPickerTheme>
+    with _$MissionPriorityPickerThemeTailorMixin {
+  const MissionPriorityPickerTheme({
+    required this.backgroundColor,
+    required this.selectionColor,
+    required this.textStyle,
+  });
+  final Color backgroundColor;
+  final Color selectionColor;
+  final TextStyle textStyle;
 }

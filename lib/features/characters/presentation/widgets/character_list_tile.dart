@@ -31,7 +31,7 @@ class CharacterListTile extends StatelessWidget {
                 onTap:
                     () => context.push(
                       '/missions/${character.id}',
-                      extra: character,
+                      extra: character.id,
                     ),
                 child: Card(
                   elevation: 10,
@@ -116,7 +116,7 @@ class CharacterListTile extends StatelessWidget {
           ),
           LinearProgressIndicator(value: completionPercentage),
           Text(
-            "${completionPercentage * 100}% completed",
+            "${(completionPercentage * 100).round()}% completed",
             style: context.appTheme.characterTheme.completionPercentageStyle,
           ),
         ],

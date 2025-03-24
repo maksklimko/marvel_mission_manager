@@ -79,6 +79,11 @@ abstract class ThemeManager {
             color: AppColors.silver,
           ),
         ),
+        missionPriorityPickerTheme: MissionPriorityPickerTheme(
+          backgroundColor: AppColors.rangoonGreen,
+          selectionColor: AppColors.thunder,
+          textStyle: GoogleFonts.bangers(fontSize: 20, color: AppColors.white),
+        ),
         missionTheme: MissionTheme(
           topBarBackgroundColor: AppColors.onyx,
           cardBottomBarColor: AppColors.rangoonGreen,
