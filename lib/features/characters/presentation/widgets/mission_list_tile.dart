@@ -3,20 +3,32 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marvel_mission_manager/core/constants/assets.dart';
 import 'package:marvel_mission_manager/core/constants/colors.dart';
+import 'package:marvel_mission_manager/core/constants/strings.dart';
 import 'package:marvel_mission_manager/core/extensions/theme_extension.dart';
+import 'package:marvel_mission_manager/core/locator/locator.dart';
 import 'package:marvel_mission_manager/core/theme/theme.dart';
+import 'package:marvel_mission_manager/core/widgets/app_button.dart';
 import 'package:marvel_mission_manager/features/characters/domain/entities/mission.dart';
+import 'package:marvel_mission_manager/features/characters/domain/usecases/complete_mission.dart';
+import 'package:marvel_mission_manager/features/characters/presentation/bloc/characters_bloc.dart';
 
 class MissionListTile extends StatelessWidget {
-  const MissionListTile({super.key, required this.mission});
+  const MissionListTile({
+    super.key,
+    required this.characterId,
+    required this.mission,
+  });
+  final String characterId;
   final Mission mission;
 
   @override
   Widget build(BuildContext context) {
+    final cardWidth =
+        0.9.sw.clamp(0, 500).toDouble(); // 90% of screen width, max 500
     return Center(
       child: SizedBox(
         height: 120,
-        width: 0.9.sw.clamp(0, 500), // 90% of screen width, max 500
+        width: cardWidth,
         child: Container(
           decoration: BoxDecoration(
             color: context.theme.cardTheme.color,
@@ -29,9 +41,39 @@ class MissionListTile extends StatelessWidget {
                 padding: EdgeInsets.all(20),
                 child: Column(
                   children: [
-                    Text(
-                      mission.name,
-                      style: context.appTheme.missionTheme.missionNameStyle,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: cardWidth - 170,
+                          child: Text(
+                            mission.name,
+                            style:
+                                context.appTheme.missionTheme.missionNameStyle,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 120,
+                          child: AppButton(
+                            isDisabled: mission.isCompleted,
+                            color: AppColors.lavaRed,
+                            onPressed: () {
+                              getIt<CharactersBloc>().add(
+                                CharactersCompleteMissionEvent(
+                                  CompleteMissionParams(
+                                    characterId: characterId,
+                                    mission: mission,
+                                  ),
+                                ),
+                              );
+                            },
+                            title:
+                                mission.isCompleted
+                                    ? Strings.completed
+                                    : Strings.complete,
+                          ),
+                        ),
+                      ],
                     ),
                     Spacer(),
                   ],

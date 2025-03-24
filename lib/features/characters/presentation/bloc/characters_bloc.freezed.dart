@@ -207,6 +207,72 @@ as DeleteMissionParams,
 }
 
 /// @nodoc
+
+
+class CharactersCompleteMissionEvent implements CharactersEvent {
+  const CharactersCompleteMissionEvent(this.params);
+  
+
+ final  CompleteMissionParams params;
+
+/// Create a copy of CharactersEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$CharactersCompleteMissionEventCopyWith<CharactersCompleteMissionEvent> get copyWith => _$CharactersCompleteMissionEventCopyWithImpl<CharactersCompleteMissionEvent>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CharactersCompleteMissionEvent&&(identical(other.params, params) || other.params == params));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,params);
+
+@override
+String toString() {
+  return 'CharactersEvent.completeMission(params: $params)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $CharactersCompleteMissionEventCopyWith<$Res> implements $CharactersEventCopyWith<$Res> {
+  factory $CharactersCompleteMissionEventCopyWith(CharactersCompleteMissionEvent value, $Res Function(CharactersCompleteMissionEvent) _then) = _$CharactersCompleteMissionEventCopyWithImpl;
+@useResult
+$Res call({
+ CompleteMissionParams params
+});
+
+
+
+
+}
+/// @nodoc
+class _$CharactersCompleteMissionEventCopyWithImpl<$Res>
+    implements $CharactersCompleteMissionEventCopyWith<$Res> {
+  _$CharactersCompleteMissionEventCopyWithImpl(this._self, this._then);
+
+  final CharactersCompleteMissionEvent _self;
+  final $Res Function(CharactersCompleteMissionEvent) _then;
+
+/// Create a copy of CharactersEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? params = null,}) {
+  return _then(CharactersCompleteMissionEvent(
+null == params ? _self.params : params // ignore: cast_nullable_to_non_nullable
+as CompleteMissionParams,
+  ));
+}
+
+
+}
+
+/// @nodoc
 mixin _$CharactersState {
 
 

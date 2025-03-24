@@ -5,4 +5,6 @@ abstract class Strings {
   static const String missionManager = 'Mission Manager';
   static const String missionName = 'Mission Name';
   static const String create = 'Create';
+  static const String complete = 'Complete';
+  static const String completed = 'Completed';
 }

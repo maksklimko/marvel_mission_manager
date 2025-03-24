@@ -19,4 +19,8 @@ class Mission with ModelConvertible<Mission, MissionModel> {
       priority: priority,
     );
   }
+
+  Mission copyWith({bool? isCompleted}) {
+    return Mission(id, name, isCompleted ?? this.isCompleted, priority);
+  }
 }

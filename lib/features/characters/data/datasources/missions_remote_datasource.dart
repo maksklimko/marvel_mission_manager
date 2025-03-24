@@ -14,6 +14,10 @@ abstract interface class MissionsRemoteDataSource {
     String characterId,
     Mission mission,
   );
+  Future<Either<FirestoreFailure, void>> completeMission(
+    String characterId,
+    Mission mission,
+  );
 }
 
 @Injectable(as: MissionsRemoteDataSource)
@@ -46,6 +50,42 @@ class MissionsRemoteDataSourceImpl implements MissionsRemoteDataSource {
         'missions': FieldValue.arrayRemove([mission.toModel().toJson()]),
       });
       return right(null);
+    } catch (e) {
+      return left(FirestoreFailure.unknownError());
+    }
+  }
+
+  @override
+  Future<Either<FirestoreFailure, void>> completeMission(
+    String characterId,
+    Mission mission,
+  ) async {
+    try {
+      return await firebaseFirestore.runTransaction((transaction) async {
+        final characterDoc = await transaction.get(
+          firebaseFirestore.collection('characters').doc(characterId),
+        );
+
+        final missions = List<Map<String, dynamic>>.from(
+          characterDoc.data()?['missions'] ?? [],
+        );
+
+        final updatedMissions =
+            missions.map((missionData) {
+              final missionModel = MissionModel.fromJson(missionData);
+              if (missionModel.id == mission.id) {
+                return mission.copyWith(isCompleted: true).toModel().toJson();
+              }
+              return missionData;
+            }).toList();
+
+        transaction.update(
+          firebaseFirestore.collection('characters').doc(characterId),
+          {'missions': updatedMissions},
+        );
+
+        return right(null);
+      });
     } catch (e) {
       return left(FirestoreFailure.unknownError());
     }

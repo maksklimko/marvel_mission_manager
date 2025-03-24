@@ -39,6 +39,8 @@ import 'package:marvel_mission_manager/features/characters/domain/repositories/m
     as _i1005;
 import 'package:marvel_mission_manager/features/characters/domain/usecases/add_mission.dart'
     as _i847;
+import 'package:marvel_mission_manager/features/characters/domain/usecases/complete_mission.dart'
+    as _i106;
 import 'package:marvel_mission_manager/features/characters/domain/usecases/delete_mission.dart'
     as _i312;
 import 'package:marvel_mission_manager/features/characters/domain/usecases/get_characters.dart'
@@ -85,6 +87,11 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i847.AddMission(missionsRepository: gh<_i1005.MissionsRepository>()),
     );
+    gh.factory<_i106.CompleteMission>(
+      () => _i106.CompleteMission(
+        missionsRepository: gh<_i1005.MissionsRepository>(),
+      ),
+    );
     gh.factory<_i18.GetCharacters>(
       () => _i18.GetCharacters(gh<_i196.CharactersRepository>()),
     );
@@ -99,6 +106,7 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i18.GetCharacters>(),
         gh<_i847.AddMission>(),
         gh<_i312.DeleteMission>(),
+        gh<_i106.CompleteMission>(),
       ),
     );
     return this;

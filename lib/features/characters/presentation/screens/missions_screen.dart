@@ -72,6 +72,7 @@ class MissionsScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: MissionListTile(
+                        characterId: character.id,
                         mission: character.missions[index],
                       ),
                     ),

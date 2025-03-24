@@ -37,14 +37,4 @@ class MissionModel with EntityConvertible<MissionModel, Mission> {
   Mission toEntity() {
     return Mission(id, name, isCompleted, priority);
   }
-
-  @override
-  static MissionModel fromEntity(Mission model) {
-    return MissionModel(
-      id: model.id,
-      name: model.name,
-      isCompleted: model.isCompleted,
-      priority: model.priority,
-    );
-  }
 }

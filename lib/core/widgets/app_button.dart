@@ -10,11 +10,15 @@ class AppButton extends StatelessWidget {
     required this.title,
     this.width,
     this.isLoading = false,
+    this.color,
+    this.isDisabled = false,
   });
   final VoidCallback onPressed;
   final String title;
   final double? width;
   final bool isLoading;
+  final bool isDisabled;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,11 @@ class AppButton extends StatelessWidget {
       width: width ?? double.infinity,
       height: 33.h,
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: isDisabled ? null : onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color ?? AppColors.lavaRed,
+          disabledBackgroundColor: AppColors.onyx,
+        ),
         child:
             isLoading
                 ? SizedBox(

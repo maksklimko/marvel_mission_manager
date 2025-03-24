@@ -7,4 +7,6 @@ class CharactersEvent with _$CharactersEvent {
       CharactersAddMissionEvent;
   const factory CharactersEvent.deleteMission(DeleteMissionParams params) =
       CharactersDeleteMissionEvent;
+  const factory CharactersEvent.completeMission(CompleteMissionParams params) =
+      CharactersCompleteMissionEvent;
 }
