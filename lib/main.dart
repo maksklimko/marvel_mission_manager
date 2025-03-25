@@ -6,12 +6,14 @@ import 'package:marvel_mission_manager/core/locator/locator.dart';
 import 'package:marvel_mission_manager/core/router/router.dart';
 import 'package:marvel_mission_manager/core/theme/theme_manager.dart';
 import 'package:marvel_mission_manager/core/utils/scroll_behaiviour.dart';
+import 'package:marvel_mission_manager/features/characters/presentation/bloc/characters_bloc.dart';
 import 'package:marvel_mission_manager/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   configureDependencies();
+  getIt<CharactersBloc>().add(const CharactersLoadEvent());
 
   await ScreenUtil.ensureScreenSize();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
