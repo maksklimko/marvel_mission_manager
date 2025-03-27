@@ -26,7 +26,7 @@ class MissionsScreen extends StatelessWidget {
       builder: (context, state) {
         final characters = (state as CharactersLoadedState).characters;
         final character = characters.firstWhere(
-          (character) => character.id == character.id,
+          (character) => character.id == this.character.id,
         );
         return Scaffold(
           appBar: CustomAppBar(

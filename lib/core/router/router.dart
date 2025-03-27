@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:marvel_mission_manager/features/auth/presentation/screens/login_screen.dart';
 import 'package:marvel_mission_manager/features/characters/domain/entities/character.dart';
@@ -22,8 +23,10 @@ final router = GoRouter(
     GoRoute(
       path: '/missions/:characterId',
       builder:
-          (context, state) =>
-              MissionsScreen(character: state.extra as Character),
+          (context, state) => MissionsScreen(
+            key: UniqueKey(),
+            character: state.extra as Character,
+          ),
     ),
   ],
 );
